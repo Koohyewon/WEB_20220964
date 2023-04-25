@@ -1,8 +1,8 @@
 <!doctype html>
-<! 짧은 글 주석> <!-- 긴 글 주석문 표시-->
+<!--주석문 표시-->
 <html lang="en">
 	<head> <title> 구글 예제 </title>
-		<meta charset="utf-8"> <! 언어표준>
+		<meta charset="utf-8"> <!--언어표준-->
 		<meta name="author" content="학번"> <!-- 저자 정보/안 적어도 지장 없음-->
 		<meta name="viewport" content="width=divice-width, initial-scale=1">
 		<meta name="keywords" content="computer">
@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="js/data_type.js" defer></script>
 		<script type="text/javascript" src="js/pop_up.js" defer></script>
 		<script type="text/javascript" src="js/array_test.js" defer></script>
+		<script type="text/javascript" src="js/hover.js" defer></script>
 		
 	</head> 
 	
@@ -68,8 +69,8 @@
 		<hr>
 		<br><!--br=줄바꿈-->
 		
-		<div class="mx-auto" style="width: 500px;"> <!-- px 앞 숫자 조정하면 이미지 배치 구간 커짐-->
-			<a href="index.html" target="_blank"><img src="img/google_big.png" class="img-fluid" alt="구글이미지"></a>
+		<div class="mx-auto" style="width: 600px;"> <!-- px 앞 숫자 조정하면 이미지 배치 구간 커짐-->
+			<a href="index.html" target="_blank"><img src="img/google_big.png" class="img-fluid" alt="구글이미지" onmouseover="over(this)" onmouseout="out(this)"></a>
 		</div>
 		<!--수정 전 코드<p style="text-align:center;">
 			<a href="index.html" target="_blank"><img src="img/google.png" alt="구글이미지"></a>
@@ -79,11 +80,11 @@
 		<!--<p style="text-align:center">검색: 
 			<input type="text" name="search" size="55" value="">
 			<button id="search_btn" type="button" >검색</button> 
-			<! onclick은 버튼을 눌렀다가 뗐을 때 실행하는 형태(동작을 감지하고 처리)/alert는 자바스크립트 함수>
+			<!onclick은 버튼을 눌렀다가 뗐을 때 실행하는 형태(동작을 감지하고 처리)/alert는 자바스크립트 함수>
 			<br>
 		</p>-->
-		<! 검색창 디자인 적용>
-		<form action="https://www.google.co.kr/search" method="GET" target="_blank">
+		<!--검색창 디자인 적용-->
+		<form id="form_main" action="https://www.google.co.kr/search" method="GET" target="_blank" onsubmit="return false">
 			<div class="d-flex justify-content-center">
 				<mx-auto>
 					<input name="query" type="text" class="form-control-lg" placeholder="검색어 입력" aria-label="search" aria-describedby="search_btn" id="search_txt"> <!--size="" 넣으면 검색창 크기 조정-->
@@ -132,7 +133,7 @@
 						<td>ROCK1</td>
 						<td>ROCK2</td>
 						<td>EUROBEAT</td>
-					</tr><! 2행 추가>
+					</tr><!--2행 추가-->
 				
 					<tr bgcolor="pink">
 						<!--<td colspan="2" width="50"><b>게임</b></td>

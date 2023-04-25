@@ -1,6 +1,6 @@
 document.getElementById("search_btn").addEventListener('click', search_message);
 
-var search_array = [];	//빈 배열 : 전역 변수
+var search_array = [,,,,,,,,,];	//빈 배열 : 전역 변수
 
 /*function search_message(){
 	alert("검색을 수행합니다!"); 
@@ -29,8 +29,8 @@ function search_message(){
 			alert("비속어가 감지되었습니다.");
 		}
 	}*/
-	var BadWords = ["바보", "멍청이", "지랄"];
 	let search_str = document.querySelector("#search_txt");
+	let BadWords = ["바보", "멍청이", "지랄"];
 	
 	if(search_str.value === BadWords[0]||search_str.value === BadWords[1]||search_str.value === BadWords[2]){
 		alert("비속어가 감지되었습니다.")
@@ -42,6 +42,7 @@ function search_message(){
 	
     else{
 		alert("검색을 수행합니다!");
+		
 		search_array.push(search_str.value); // 배열에 검색어 추가
 		let text = document.getElementById("search_message").innerHTML = search_array.toString(); // 값 변환
 		document.querySelector("#form_main").submit();
