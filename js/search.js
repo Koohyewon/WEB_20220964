@@ -53,10 +53,9 @@ var search_array = [];	//빈 배열 : 전역 변수
 function search_message(){
 	
 	let search_str = document.querySelector("#search_txt");
-	let BadWords = ["바보", "멍청이", "지랄"];
-	let Maxcount = 10;
-	let count = 0;
 	
+	//6주차 연습문제 : 비속어 감지
+	let BadWords = ["바보", "멍청이", "지랄"];
 	if(search_str.value === BadWords[0]||search_str.value === BadWords[1]||search_str.value === BadWords[2]){
 		alert("비속어가 감지되었습니다.")
 	}
@@ -67,6 +66,7 @@ function search_message(){
 	
     else{
 		
+		//7주차 연습문제 : 배열 길이 10개 체크, 체크시 가장 앞 배열 제거
 		if(search_array.length==10){
 			search_array.shift();
 		}
@@ -74,7 +74,7 @@ function search_message(){
 		alert("검색을 수행합니다!");
 		
 		search_array.push(search_str.value); // 배열에 검색어 추가
-		let text = document.getElementById("search_message").innerHTML = search_array.toString(); // 값 변환
+		let text = document.getElementById("search_message").innerHTML = search_array.toString(); // 값 변환, 문자열 반환
 		document.querySelector("#form_main").submit();
 
 	}
