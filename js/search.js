@@ -67,7 +67,7 @@ function search_message(){
     else{
 		
 		//7주차 연습문제 : 배열 길이 10개 체크, 체크시 가장 앞 배열 제거
-		if(search_array.length==10){
+		if(search_array.length === 10){
 			search_array.shift();
 		}
 		
