@@ -46,6 +46,23 @@ function show_clock(){
 	}
 }
 
+function closePopup() {
+	if (document.getElementById('check_popup').value) {
+		setCookie("popupYN", "N", 1);
+		console.log("쿠키를 설정합니다.");
+		self.close();
+	}
+}
+
+/*function addJavascript(jsname) { // 자바스크립트 외부 연동
+	var th = document.getElementsByTagName('head')[0];
+	var s = document.createElement('script');
+	s.setAttribute('type','text/javascript');
+	s.setAttribute('src',jsname);
+	th.appendChild(s);
+}
+addJavascript('/js/cookie.js'); // 쿠키 함수*/
+
 function setCookie(name, value, expiredays) {
 	var date = new Date();
 	date.setDate(date.getDate() + expiredays);
@@ -67,10 +84,4 @@ function getCookie(name) {
 	return ;
 }
 
-function closePopup() {
-	if (document.getElementById('check_popup').value) {
-		setCookie("popupYN", "N", 1);
-		console.log("쿠키를 설정합니다.");
-		self.close();
-	}
-}
+
