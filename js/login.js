@@ -1,3 +1,4 @@
+/* 9주차 연습문제 수정 전
 function login(){
 	let form = document.querySelector("#form_main");
 	let id = document.querySelector("#floatingInput");
@@ -19,16 +20,125 @@ function login(){
     if(id.value.length === 0 || password.value.length === 0){
         alert("아이디와 비밀번호를 모두 입력해주세요.")
     }
+	
 	else{
 		session_set(); //세션 생성
+        form.submit();
+    }
+}*/
+
+
+//9주차 연습문제 수정 후
+function login(){
+	let form = document.querySelector("#form_main");
+	let id = document.querySelector("#floatingInput");
+    let password = document.querySelector("#floatingPassword");
+	let check = document.querySelector("#idSaveCheck");
+    
+    form.action = "../index_login.html";
+    form.method = "get"
+    
+	if(check.checked == true) { // 아이디 체크 o
+		alert("쿠키를 저장합니다.");
+		setCookie("id", id.value, 1); // 1일 저장
+		alert("쿠키 값 :" + id.value);
+	} 
+	else { // 아이디 체크 x
+		setCookie("id", id.value, 0); //날짜를 0 - 쿠키 삭제
+    }
+	
+    if(id.value.length === 0 || password.value.length === 0){
+        alert("아이디와 비밀번호를 모두 입력해주세요.");
+    }
+	else if(!login_id_check(id.value)){
+		alert("이메일 형식이 잘못되었습니다. 다시 작성해주세요.");
+	}
+	else if(!login_password_check(password.value)){
+		alert("숫자, 영문자, 특수문자 조합으로 8~16자리를 사용해야 합니다.");
+	}
+	else{
+		session_set(); //세션 생성
+		//로그인 횟수 증가
+		login_count();
         form.submit();
     }
 }
 
 function logout(){
 	session_del();	//세션 삭제
+	logout_count();
 	location.href = '../index.html';
 }
+
+
+//9주차 연습문제 login_check 함수 추가
+function login_id_check(str){
+	var email_check =  /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+	if(!email_check.test(str)){
+		return false;
+	}
+	else{
+		return true;
+	}      
+}
+
+function login_password_check(str){	
+	//숫자, 영문자, 특수문자 조합으로 8~16자리
+	var password_check = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+	if(!password_check.test(str)){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+
+//10주차 연습문제 추가
+function login_count(){
+	var cookie = document.cookie;
+	var cookieName = 'login_cnt';
+	var cookieNameIndexOf = cookie.indexOf(cookieName);
+	var today = new Date();
+	today.setHours(24);
+	today.setMinutes(0);
+	today.setSeconds(0);
+	if(cookieNameIndexOf > -1){
+		var startIndexOf = cookieNameIndexOf;
+		var endIndexOf = cookie.indexOf(';',startIndexOf);
+		//-1일 경우 맨마지막에 위치 하므로 전체크기를 가져옴
+		if(endIndexOf == -1)endIndexOf = cookie.length;
+		var bbsVisitCount = new Number(cookie.substring(startIndexOf + (cookieName+'=').length, endIndexOf));
+		cookie = cookieName + '=' + (++bbsVisitCount) + '; path=/; expires=' + today.toGMTString();
+	} else {
+		cookie = cookieName + '=0; path=/; expires=' + today.toGMTString();
+	}
+	document.cookie = cookie;
+}
+
+
+//10주차 연습문제 로그아웃 카운트
+function logout_count(){
+	var cookie = document.cookie;
+	var cookieName = 'logout_cnt';
+	var cookieNameIndexOf = cookie.indexOf(cookieName);
+	var today = new Date();
+	today.setHours(24);
+	today.setMinutes(0);
+	today.setSeconds(0);
+	if(cookieNameIndexOf > -1){
+		var startIndexOf = cookieNameIndexOf;
+		var endIndexOf = cookie.indexOf(';',startIndexOf);
+		//-1일 경우 맨마지막에 위치 하므로 전체크기를 가져옴
+		if(endIndexOf == -1)endIndexOf = cookie.length;
+		var bbsVisitCount = new Number(cookie.substring(startIndexOf + (cookieName+'=').length, endIndexOf));
+		cookie = cookieName + '=' + (++bbsVisitCount) + '; path=/; expires=' + today.toGMTString();
+	} else {
+		cookie = cookieName + '=0; path=/; expires=' + today.toGMTString();
+	}
+	document.cookie = cookie;
+}
+
 
 function get_id(){
 	if(true){
