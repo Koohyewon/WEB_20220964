@@ -48,7 +48,7 @@ function login(){
     }
 	
     if(id.value.length === 0 || password.value.length === 0){
-        alert("아이디와 비밀번호를 모두 입력해주세요.");
+		alert("아이디와 비밀번호를 모두 입력해주세요.");
     }
 	else if(!login_id_check(id.value)){
 		alert("이메일 형식이 잘못되었습니다. 다시 작성해주세요.");
@@ -57,12 +57,58 @@ function login(){
 		alert("숫자, 영문자, 특수문자 조합으로 8~16자리를 사용해야 합니다.");
 	}
 	else{
-		session_set(); //세션 생성
-		//로그인 횟수 증가
-		login_count();
+		session_set();	//세션 생성
+		login_count();	//로그인 횟수 증가
         form.submit();
     }
 }
+
+//9주차 + 10주차 연습문제 추가
+/*function login(){
+	let form = document.querySelector("#form_main");
+	let id = document.querySelector("#floatingInput");
+    let password = document.querySelector("#floatingPassword");
+	let check = document.querySelector("#idSaveCheck");
+	
+    form.action = "../index_login.html";
+    form.method = "get"
+    
+	if(check.checked == true) { // 아이디 체크 o
+		alert("쿠키를 저장합니다.");
+		setCookie("id", id.value, 1); // 1일 저장
+		alert("쿠키 값 :" + id.value);
+	} 
+	else { // 아이디 체크 x
+		setCookie("id", id.value, 0); //날짜를 0 - 쿠키 삭제
+    }
+	
+	let loginfail = getCookie("failcheck");
+	
+    if(id.value.length === 0 || password.value.length === 0){
+		if( failcheck.value > 5){
+			alert("로그인 가능 횟수를 초과했습니다.");
+			
+		}
+		else{
+			login_fail();
+			alert(loginfail);
+			alert("아이디와 비밀번호를 모두 입력해주세요.");
+
+		}
+
+    }
+	else if(!login_id_check(id.value)){
+		alert("이메일 형식이 잘못되었습니다. 다시 작성해주세요.");
+	}
+	else if(!login_password_check(password.value)){
+		alert("숫자, 영문자, 특수문자 조합으로 8~16자리를 사용해야 합니다.");
+	}
+	else{
+		session_set();	//세션 생성
+		login_count();	//로그인 횟수 증가
+        form.submit();
+    }
+}*/
 
 function logout(){
 	session_del();	//세션 삭제
@@ -70,6 +116,10 @@ function logout(){
 	location.href = '../index.html';
 }
 
+//11주차 연습문제, 로그인 5분 후 로그아웃
+function Timeout(){
+	setTimeout(logout, 300000);
+}
 
 //9주차 연습문제 login_check 함수 추가
 function login_id_check(str){
@@ -93,52 +143,60 @@ function login_password_check(str){
 	}
 }
 
-
-//10주차 연습문제 추가
-function login_count(){
-	var cookie = document.cookie;
-	var cookieName = 'login_cnt';
-	var cookieNameIndexOf = cookie.indexOf(cookieName);
-	var today = new Date();
-	today.setHours(24);
-	today.setMinutes(0);
-	today.setSeconds(0);
-	if(cookieNameIndexOf > -1){
-		var startIndexOf = cookieNameIndexOf;
-		var endIndexOf = cookie.indexOf(';',startIndexOf);
-		//-1일 경우 맨마지막에 위치 하므로 전체크기를 가져옴
-		if(endIndexOf == -1)endIndexOf = cookie.length;
-		var bbsVisitCount = new Number(cookie.substring(startIndexOf + (cookieName+'=').length, endIndexOf));
-		cookie = cookieName + '=' + (++bbsVisitCount) + '; path=/; expires=' + today.toGMTString();
-	} else {
-		cookie = cookieName + '=0; path=/; expires=' + today.toGMTString();
+//11주차 로그인 실패 카운트
+/*function login_fail(){
+	var expireDate = new Date();
+	expireDate.setDate(expireDate.getDate() + 1);
+	var failCnt = eval(cookieVal("failcheck"));
+	failCnt++;
+	document.cookie = "failcheck=" + failCnt + ";expires" + expireDate.toGMTString();
+	function cookieVal(cookieName){
+		thisCookie = document.cookie.split("; ");
+		for(i=0; i<thisCookie.length; i++){
+			if(cookieName == thisCookie[i].split("=")[0]){
+				return thisCookie[i].split("=")[1];
+			}
+		}
+		return 0;
 	}
-	document.cookie = cookie;
-}
+}*/
 
+//10주차 연습문제 로그인 카운트
+function login_count(){
+	var expireDate = new Date();
+	expireDate.setDate(expireDate.getDate() + 1);
+	var loginCnt = eval(cookieVal("login_cnt"));
+	loginCnt++;
+	document.cookie = "login_cnt=" + loginCnt + ";expires" + expireDate.toGMTString();
+	function cookieVal(cookieName){
+		thisCookie = document.cookie.split("; ");
+		for(i=0; i<thisCookie.length; i++){
+			if(cookieName == thisCookie[i].split("=")[0]){
+				return thisCookie[i].split("=")[1];
+			}
+		}
+		return 0;
+	}
+	
+}
 
 //10주차 연습문제 로그아웃 카운트
 function logout_count(){
-	var cookie = document.cookie;
-	var cookieName = 'logout_cnt';
-	var cookieNameIndexOf = cookie.indexOf(cookieName);
-	var today = new Date();
-	today.setHours(24);
-	today.setMinutes(0);
-	today.setSeconds(0);
-	if(cookieNameIndexOf > -1){
-		var startIndexOf = cookieNameIndexOf;
-		var endIndexOf = cookie.indexOf(';',startIndexOf);
-		//-1일 경우 맨마지막에 위치 하므로 전체크기를 가져옴
-		if(endIndexOf == -1)endIndexOf = cookie.length;
-		var bbsVisitCount = new Number(cookie.substring(startIndexOf + (cookieName+'=').length, endIndexOf));
-		cookie = cookieName + '=' + (++bbsVisitCount) + '; path=/; expires=' + today.toGMTString();
-	} else {
-		cookie = cookieName + '=0; path=/; expires=' + today.toGMTString();
+	var expireDate = new Date();
+	expireDate.setDate(expireDate.getDate() + 1);
+	var logoutCnt = eval(cookieVal("logout_cnt"));
+	logoutCnt++;
+	document.cookie = "logout_cnt=" + logoutCnt + ";expires" + expireDate.toGMTString();
+	function cookieVal(cookieName){
+		thisCookie = document.cookie.split("; ");
+		for(i=0; i<thisCookie.length; i++){
+			if(cookieName == thisCookie[i].split("=")[0]){
+				return thisCookie[i].split("=")[1];
+			}
+		}
+		return 0;
 	}
-	document.cookie = cookie;
 }
-
 
 function get_id(){
 	if(true){
@@ -178,7 +236,7 @@ function addJavascript(jsname) { // 자바스크립트 외부 연동
 	var th = document.getElementsByTagName('head')[0];
 	var s = document.createElement('script');
 	s.setAttribute('type','text/javascript');
-	s.setAttribute('src',jsname);
+	s.setAttribute('src', jsname);
 	th.appendChild(s);
 }
 addJavascript('/js/security.js'); // 암복호화 함수

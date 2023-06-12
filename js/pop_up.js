@@ -58,7 +58,7 @@ function closePopup() {
 	var th = document.getElementsByTagName('head')[0];
 	var s = document.createElement('script');
 	s.setAttribute('type','text/javascript');
-	s.setAttribute('src',jsname);
+	s.setAttribute('src', jsname);
 	th.appendChild(s);
 }
 addJavascript('/js/cookie.js'); // 쿠키 함수*/
