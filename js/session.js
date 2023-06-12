@@ -57,7 +57,7 @@ function session_del() {//세션 삭제
 	if (sessionStorage) {
 		// Retrieve data
 		sessionStorage.removeItem("Session_Storage_test");
-		alert('로그아웃 버튼 클릭 확인 : 세션 스토리지를 삭제합니다.');
+		alert('로그아웃 확인 : 세션 스토리지를 삭제합니다.');
 	} 
 	else {
 		alert("세션 스토리지 지원 x");
@@ -86,4 +86,14 @@ function session_join_set(){ //세션 저장(객체)
     } else {
         alert("세션 스토리지 지원 x");
     }   
+}
+
+//12주차 응용문제
+function session_join_get() { //세션 읽기
+	if (sessionStorage) {
+		console.log(sessionStorage.getItem("Session_Storage_object"));
+    } 
+	else {
+		alert("세션 스토리지 지원 x");
+    }
 }

@@ -1,4 +1,4 @@
-/* 9주차 연습문제 수정 전
+/* 9주차 응용문제 수정 전
 function login(){
 	let form = document.querySelector("#form_main");
 	let id = document.querySelector("#floatingInput");
@@ -116,12 +116,12 @@ function logout(){
 	location.href = '../index.html';
 }
 
-//11주차 연습문제, 로그인 5분 후 로그아웃
+//11주차 응용문제, 로그인 5분 후 로그아웃
 function Timeout(){
 	setTimeout(logout, 300000);
 }
 
-//9주차 연습문제 login_check 함수 추가
+//9주차 응용문제 login_check 함수 추가
 function login_id_check(str){
 	var email_check =  /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 	if(!email_check.test(str)){
@@ -161,7 +161,7 @@ function login_password_check(str){
 	}
 }*/
 
-//10주차 연습문제 로그인 카운트
+//10주차 응용문제 로그인 카운트
 function login_count(){
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() + 1);
@@ -180,7 +180,7 @@ function login_count(){
 	
 }
 
-//10주차 연습문제 로그아웃 카운트
+//10주차 응용문제 로그아웃 카운트
 function logout_count(){
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() + 1);

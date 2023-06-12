@@ -19,7 +19,7 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);*/
 
 
 
-//13주차 연습문제
+//13주차 응용문제
 
 // 마커를 담을 배열입니다
 var markers = [];

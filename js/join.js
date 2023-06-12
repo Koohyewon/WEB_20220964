@@ -49,6 +49,7 @@ function join(){ // 회원가입
         alert("회원가입 폼에 모든 정보를 입력해주세요.(성별, 분반 제외)");
     }else{
 		session_join_set(); // 회원가입 용 세션 생성
+		session_join_get();
         form.submit();
     }
 }
