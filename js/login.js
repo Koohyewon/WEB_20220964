@@ -118,7 +118,7 @@ function logout(){
 
 //11주차 응용문제, 로그인 5분 후 로그아웃
 function Timeout(){
-	setTimeout(logout, 300000);
+	setTimeout("logout();", 300000);
 }
 
 //9주차 응용문제 login_check 함수 추가
