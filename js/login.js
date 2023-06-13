@@ -4,7 +4,7 @@ function login(){
 	let id = document.querySelector("#floatingInput");
     let password = document.querySelector("#floatingPassword");
 	let check = document.querySelector("#idSaveCheck");
-    
+     
     form.action = "../index_login.html";
     form.method = "get"
     
