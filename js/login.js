@@ -25,6 +25,7 @@ function login(){
 		session_set(); //세션 생성
         form.submit();
     }
+	
 }*/
 
 
