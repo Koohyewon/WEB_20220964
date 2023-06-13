@@ -64,7 +64,7 @@ function login(){
     }
 }*/
 
-//9주차 + 10주차 연습문제 추가
+//9주차 + 11주차 연습문제 추가
 function login(){
 	let form = document.querySelector("#form_main");
 	let id = document.querySelector("#floatingInput");
@@ -83,23 +83,29 @@ function login(){
 		setCookie("id", id.value, 0); //날짜를 0 - 쿠키 삭제
     }
 	
-    if(id.value.length === 0 || password.value.length === 0){
-		login_fail();
-		alert("아이디와 비밀번호를 모두 입력해주세요.");
-    }
-	else if(!login_id_check(id.value)){
-		login_fail();
-		alert("이메일 형식이 잘못되었습니다. 다시 작성해주세요.");
-	}
-	else if(!login_password_check(password.value)){
-		login_fail();
-		alert("숫자, 영문자, 특수문자 조합으로 8~16자리를 사용해야 합니다.");
+	if(parseInt(cookieVal("failcheck")) > 4){
+		alert("로그인 가능 횟수 5회를 초과했습니다. 로그인이 제한됩니다.");
 	}
 	else{
-		session_set();	//세션 생성
-		login_count();	//로그인 횟수 증가
-        form.submit();
-    }
+		if(id.value.length === 0 || password.value.length === 0){
+			login_fail();
+			alert("아이디와 비밀번호를 모두 입력해주세요.");
+		}
+		else if(!login_id_check(id.value)){
+			login_fail();
+			alert("이메일 형식이 잘못되었습니다. 다시 작성해주세요.");
+		}
+		else if(!login_password_check(password.value)){
+			login_fail();
+			alert("숫자, 영문자, 특수문자 조합으로 8~16자리를 사용해야 합니다.");
+		}
+		else{
+			session_set();	//세션 생성
+			login_count();	//로그인 횟수 증가
+			form.submit();
+		}
+	}
+    
 }
 
 function logout(){
@@ -135,41 +141,29 @@ function login_password_check(str){
 	}
 }
 
-//11주차 로그인 실패 카운트
-function login_fail(){
-	var expireDate = new Date();
-	expireDate.setDate(expireDate.getDate() + 1);
-	var failCnt = cookieVal("failcheck");
-	failCnt++;
-	document.cookie = "failcheck=" + failCnt + ";expires" + expireDate.toGMTString();
-	function cookieVal(cookieName){
-		thisCookie = document.cookie.split("; ");
-		for(i=0; i<thisCookie.length; i++){
-			if(cookieName == thisCookie[i].split("=")[0]){
-				return thisCookie[i].split("=")[1];
-			}
+//10주차 응용문제 로그인 카운트
+function cookieVal(cookieName){
+	thisCookie = document.cookie.split("; ");
+	for(i=0; i<thisCookie.length; i++){
+		if(cookieName == thisCookie[i].split("=")[0]){
+			return thisCookie[i].split("=")[1];
 		}
-		return 0;
 	}
+	return 0;
 }
 
-//10주차 응용문제 로그인 카운트
 function login_count(){
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() + 1);
-	var loginCnt = cookieVal("login_cnt");
-	setCookie("login_cnt", loginCnt, 1);
-	loginCnt++;
-	document.cookie = "login_cnt=" + loginCnt + ";expires" + expireDate.toGMTString();
-	function cookieVal(cookieName){
-		thisCookie = document.cookie.split("; ");
-		for(i=0; i<thisCookie.length; i++){
-			if(cookieName == thisCookie[i].split("=")[0]){
-				return thisCookie[i].split("=")[1];
-			}
-		}
-		return 0;
+	//var loginCnt = cookieVal("login_cnt");
+	var loginCnt = parseInt(cookieVal("login_cnt"));
+	if(isNaN(loginCnt)){
+		loginCnt = 0;
 	}
+	//setCookie("login_cnt", loginCnt, 1);
+	loginCnt++;
+	//document.cookie = "login_cnt=" + loginCnt + ";expires" + expireDate.toGMTString();
+	setCookie("login_cnt", loginCnt.toString(), 1);
 	//let count = parseInt(getCookie("login_cnt"));
 	//if(isNaN(count)){
 	//	count = 0;
@@ -183,18 +177,29 @@ function login_count(){
 function logout_count(){
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() + 1);
-	var logoutCnt = cookieVal("logout_cnt");
-	logoutCnt++;
-	document.cookie = "logout_cnt=" + logoutCnt + ";expires" + expireDate.toGMTString();
-	function cookieVal(cookieName){
-		thisCookie = document.cookie.split("; ");
-		for(i=0; i<thisCookie.length; i++){
-			if(cookieName == thisCookie[i].split("=")[0]){
-				return thisCookie[i].split("=")[1];
-			}
-		}
-		return 0;
+	//var logoutCnt = cookieVal("logout_cnt");
+	var logoutCnt = parseInt(cookieVal("logout_cnt"));
+	if(isNaN(logoutCnt)){
+		logoutCnt = 0;
 	}
+	logoutCnt++;
+	//document.cookie = "logout_cnt=" + logoutCnt + ";expires" + expireDate.toGMTString();
+	setCookie("logout_cnt", logoutCnt.toString(), 1);
+}
+
+//11주차 로그인 실패 카운트
+function login_fail(){
+	var expireDate = new Date();
+	expireDate.setDate(expireDate.getDate() + 1);
+	//var failCnt = cookieVal("failcheck");
+	var failCnt = parseInt(cookieVal("failcheck"));
+	if(isNaN(failCnt)){
+		failCnt = 0;
+	}
+	failCnt++;
+	//document.cookie = "failcheck=" + failCnt + ";expires" + expireDate.toGMTString();
+	setCookie("failcheck", failCnt.toString(), 1);
+
 }
 
 function get_id(){
