@@ -102,7 +102,7 @@ function login_password_check(str){
 /*function login_fail(){
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() + 1);
-	var failCnt = eval(cookieVal("failcheck"));
+	var failCnt = cookieVal("failcheck");
 	failCnt++;
 	document.cookie = "failcheck=" + failCnt + ";expires" + expireDate.toGMTString();
 	function cookieVal(cookieName){
@@ -120,7 +120,7 @@ function login_password_check(str){
 function login_count(){
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() + 1);
-	var loginCnt = eval(cookieVal("login_cnt"));
+	var loginCnt = cookieVal("login_cnt");
 	loginCnt++;
 	document.cookie = "login_cnt=" + loginCnt + ";expires" + expireDate.toGMTString();
 	function cookieVal(cookieName){
@@ -139,7 +139,7 @@ function login_count(){
 function logout_count(){
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() + 1);
-	var logoutCnt = eval(cookieVal("logout_cnt"));
+	var logoutCnt = cookieVal("logout_cnt");
 	logoutCnt++;
 	document.cookie = "logout_cnt=" + logoutCnt + ";expires" + expireDate.toGMTString();
 	function cookieVal(cookieName){
