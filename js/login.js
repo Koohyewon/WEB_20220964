@@ -64,52 +64,6 @@ function login(){
     }
 }
 
-//9주차 + 10주차 연습문제 추가
-/*function login(){
-	let form = document.querySelector("#form_main");
-	let id = document.querySelector("#floatingInput");
-    let password = document.querySelector("#floatingPassword");
-	let check = document.querySelector("#idSaveCheck");
-	
-    form.action = "../index_login.html";
-    form.method = "get"
-    
-	if(check.checked == true) { // 아이디 체크 o
-		alert("쿠키를 저장합니다.");
-		setCookie("id", id.value, 1); // 1일 저장
-		alert("쿠키 값 :" + id.value);
-	} 
-	else { // 아이디 체크 x
-		setCookie("id", id.value, 0); //날짜를 0 - 쿠키 삭제
-    }
-	
-	let loginfail = getCookie("failcheck");
-	
-    if(id.value.length === 0 || password.value.length === 0){
-		if( failcheck.value > 5){
-			alert("로그인 가능 횟수를 초과했습니다.");
-			
-		}
-		else{
-			login_fail();
-			alert(loginfail);
-			alert("아이디와 비밀번호를 모두 입력해주세요.");
-
-		}
-
-    }
-	else if(!login_id_check(id.value)){
-		alert("이메일 형식이 잘못되었습니다. 다시 작성해주세요.");
-	}
-	else if(!login_password_check(password.value)){
-		alert("숫자, 영문자, 특수문자 조합으로 8~16자리를 사용해야 합니다.");
-	}
-	else{
-		session_set();	//세션 생성
-		login_count();	//로그인 횟수 증가
-        form.submit();
-    }
-}*/
 
 function logout(){
 	session_del();	//세션 삭제
