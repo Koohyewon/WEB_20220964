@@ -91,6 +91,8 @@ function session_join_set(){ //세션 저장(객체)
 //12주차 응용문제
 function session_join_get() { //세션 읽기
 	if (sessionStorage) {
+		//var data = JSON.parse(sessionStorage.getItem("Session_Storage_encryted"));
+		//console.log(data);
 		console.log(sessionStorage.getItem("Session_Storage_object"));
     } 
 	else {
