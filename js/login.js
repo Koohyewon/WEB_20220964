@@ -154,44 +154,44 @@ function cookieVal(cookieName){
 
 //10주차 응용문제 로그인 카운트
 function login_count(){
-	var expireDate = new Date();
-	expireDate.setDate(expireDate.getDate() + 1);
+	//var expireDate = new Date();
+	//expireDate.setDate(expireDate.getDate() + 1);
 	//var loginCnt = cookieVal("login_cnt");
+	//document.cookie = "login_cnt=" + loginCnt + ";expires" + expireDate.toGMTString();
+	//setCookie("login_cnt", loginCnt, 1);
 	var loginCnt = parseInt(cookieVal("login_cnt"));
 	if(isNaN(loginCnt)){
 		loginCnt = 0;
 	}
 	loginCnt++;
-	//document.cookie = "login_cnt=" + loginCnt + ";expires" + expireDate.toGMTString();
-	//setCookie("login_cnt", loginCnt, 1);
 	setCookie("login_cnt", loginCnt.toString(), 1);
 }
 
 //10주차 응용문제 로그아웃 카운트
 function logout_count(){
-	var expireDate = new Date();
-	expireDate.setDate(expireDate.getDate() + 1);
+	//var expireDate = new Date();
+	//expireDate.setDate(expireDate.getDate() + 1);
 	//var logoutCnt = cookieVal("logout_cnt");
+	//document.cookie = "logout_cnt=" + logoutCnt + ";expires" + expireDate.toGMTString();
 	var logoutCnt = parseInt(cookieVal("logout_cnt"));
 	if(isNaN(logoutCnt)){
 		logoutCnt = 0;
 	}
 	logoutCnt++;
-	//document.cookie = "logout_cnt=" + logoutCnt + ";expires" + expireDate.toGMTString();
 	setCookie("logout_cnt", logoutCnt.toString(), 1);
 }
 
 //11주차 로그인 실패 카운트
 function login_fail(){
-	var expireDate = new Date();
-	expireDate.setDate(expireDate.getDate() + 1);
+	//var expireDate = new Date();
+	//expireDate.setDate(expireDate.getDate() + 1);
 	//var failCnt = cookieVal("failcheck");
+	//document.cookie = "failcheck=" + failCnt + ";expires" + expireDate.toGMTString();
 	var failCnt = parseInt(cookieVal("failcheck"));
 	if(isNaN(failCnt)){
 		failCnt = 0;
 	}
 	failCnt++;
-	//document.cookie = "failcheck=" + failCnt + ";expires" + expireDate.toGMTString();
 	setCookie("failcheck", failCnt.toString(), 1);
 
 }
