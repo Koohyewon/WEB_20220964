@@ -84,7 +84,8 @@ function login(){
     }
 	
 	if(parseInt(cookieVal("failcheck")) > 4){
-		alert("로그인 가능 횟수 5회를 초과했습니다. 로그인이 제한됩니다.");
+		alert("로그인 가능 횟수 5회를 초과했습니다. 5분간 로그인이 제한됩니다.");
+		setTimeout("deleteCookie('failcheck');", 300000);
 	}
 	else{
 		if(id.value.length === 0 || password.value.length === 0){
