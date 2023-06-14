@@ -92,7 +92,7 @@ function login(){
 			alert("아이디와 비밀번호를 모두 입력해주세요.");
 		}
 		else if(!login_id_check(id.value)){
-			login_fail();
+			login_fail(); 
 			alert("이메일 형식이 잘못되었습니다. 다시 작성해주세요.");
 		}
 		else if(!login_password_check(password.value)){
@@ -141,7 +141,7 @@ function login_password_check(str){
 	}
 }
 
-//10주차 응용문제 로그인 카운트
+//10주차 응용문제 카운트
 function cookieVal(cookieName){
 	thisCookie = document.cookie.split("; ");
 	for(i=0; i<thisCookie.length; i++){
@@ -152,6 +152,7 @@ function cookieVal(cookieName){
 	return 0;
 }
 
+//10주차 응용문제 로그인 카운트
 function login_count(){
 	var expireDate = new Date();
 	expireDate.setDate(expireDate.getDate() + 1);
@@ -160,17 +161,10 @@ function login_count(){
 	if(isNaN(loginCnt)){
 		loginCnt = 0;
 	}
-	//setCookie("login_cnt", loginCnt, 1);
 	loginCnt++;
 	//document.cookie = "login_cnt=" + loginCnt + ";expires" + expireDate.toGMTString();
+	//setCookie("login_cnt", loginCnt, 1);
 	setCookie("login_cnt", loginCnt.toString(), 1);
-	//let count = parseInt(getCookie("login_cnt"));
-	//if(isNaN(count)){
-	//	count = 0;
-	//}
-	//count+=1;
-	//setCookie("login_cnt", count.toString(), 1);
-	//console.log("로그인 횟수: " + count);
 }
 
 //10주차 응용문제 로그아웃 카운트
